@@ -21,11 +21,6 @@ $('#add-train-btn').on('click', function(event){
     var frequency= $('#frequency-input').val().trim();
     var arrival= moment($('#arrival-input').val().trim(), "HH:mm").format("HH:mm");
     var weekendsAndHolidays= $("input:radio:checked").val();
-    console.log(trainName);
-    console.log(destination)
-    console.log(frequency);
-    console.log(arrival);
-    console.log(weekendsAndHolidays);
 
     var newTrain = {
         name: trainName,
@@ -38,51 +33,52 @@ $('#add-train-btn').on('click', function(event){
     database.ref().push(newTrain);
     
 
-      console.log(newTrain.name);
-      console.log(newTrain.destination);
-      console.log(newTrain.frequency);
-      console.log(newTrain.arrival);
-      console.log(newTrain.weekendsAndHolidays);
       $("#train-name-input").val("");
       $("#destination-input").val("");
       $("#frequency-input").val("");
       $("#arrival-input").val("");
       $("#arrival-input").val("No");
 
-
 })
 
+database.ref().on("child_added", function(childSnapshot) {
+
+ 
+  var dataTrainName = childSnapshot.val().name;
+  var dataDestination = childSnapshot.val().destination;
+  var dataFrequency = childSnapshot.val().frequency;
+  var dataFirstArrival = childSnapshot.val().arrival;
+  var dataWeekends = childSnapshot.val().weekendsAndHolidays;
 
 
-// convert times using moment.js
-var currentTime = moment().format("HH:mm");
-console.log(currentTime);
+  var dataFirstArrivalConverted = moment(dataFirstArrival, "HH:mm", true).subtract(1, "years");
+  var diffTime = moment().diff(moment(dataFirstArrivalConverted), "minutes");
+  var tRemainder = diffTime % dataFrequency;
+  var tMinutesTillTrain = dataFrequency - tRemainder;
+  var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+  var nextArrival = moment(nextTrain).format("hh:mm");
+
+
+  var newTableRow = $('<tr>')
+  var newTDName = $('<td>'+ dataTrainName + '</td>');
+  var newTDDestination = $('<td>'+ dataDestination + '</td>');
+  var newTDFrequency = $('<td>'+ dataFrequency+ '</td>');
+  var newTDArrival = $('<td>'+ nextArrival + '</td>');
+  var newTDMinutesAway = $('<td>'+ tMinutesTillTrain + '</td>');
+  var newTDWeekends= $('<td>'+ dataWeekends + '</td>');
+
+
+  $('#train-table-body').append(newTableRow);
+  newTableRow.append(newTDName);
+  newTableRow.append(newTDDestination);
+  newTableRow.append(newTDFrequency);
+  newTableRow.append(newTDArrival);
+  newTableRow.append(newTDMinutesAway);
+  newTableRow.append(newTDWeekends);    
+});
 
 
 
-
-
-//convert times into legible format down to minute
-
-//get snapshots of data from firebase
-
-//Append to table
-
-
-
-// Make sure that your app suits this basic spec:
-  
-// * When adding trains, administrators should be able to submit the following:
-  
-//   * Train Name x
-  
-//   * Destination x
-  
-//   * First Train Time -- in military time x
-  
-//   * Frequency -- in minutes x
-
-// * Code this app to calculate when the next train will arrive; this should be relative to the current time.
 
 // * Users from many different machines must be able to view same train times.
 
@@ -95,8 +91,5 @@ console.log(currentTime);
 // * As a final challenge, make it so that only users who log into the site with their Google or GitHub accounts can use your site. You'll need to read up on Firebase authentication for this bonus exercise.
 //==================================================================================================
 
-
-
-//connect to firebase
 
 
