@@ -1,0 +1,23 @@
+
+
+.jumbotron {
+    margin-top: 20px;
+    background-image: url("http://www.interrail.eu/sites/interrail.eu/files/flam_railway_crossing_valley.jpg");
+    background-size: 100%;
+}
+
+h1{
+    color: black;
+    text-shadow: 2px 2px 3px rgb(207, 207, 207); 
+
+}
+
+#add-train-btn {
+    background-color: black;
+    color: white;
+}
+
+.form-control:hover{
+    background-color: rgb(196, 248, 248);
+}
+
