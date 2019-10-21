@@ -12,6 +12,22 @@ h1{
 
 }
 
+button {
+    color: rgb(0, 0, 0);
+    padding: 7px 7px 7px 7px;
+    margin-left: 5px;
+    margin-top: 5px;
+    border-radius: 10px
+}
+.update-btn {
+    background-color: rgb(181, 215, 218)
+}
+
+.remove-btn {
+    background-color: rgb(230, 90, 90)
+
+}
+
 #add-train-btn {
     background-color: black;
     color: white;
