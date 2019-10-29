@@ -10,6 +10,4 @@ Users are able to view a table of incoming trains, their destination and informa
 The train scheduler application is written with javascript and jQuery to send input data to Firebase, which hosts arrival and departure data. Moment.js is incorporated to calculate next arrival time, minutes away from arrival, and to convert timestamps into legible dates.
 
 
-
-
-![Train Scheduler Gif(train.gif)
+![train](https://user-images.githubusercontent.com/51139840/67814613-79e86580-fa72-11e9-86b1-15f5dc819105.gif)
