@@ -11,4 +11,5 @@ The train scheduler application is written with javascript and jQuery to send in
 
 
 
-![](train.gif)
+
+![Train Scheduler Gif(./train.gif)
