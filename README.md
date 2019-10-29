@@ -12,4 +12,4 @@ The train scheduler application is written with javascript and jQuery to send in
 
 
 
-![Train Scheduler Gif(./train.gif)
+![Train Scheduler Gif(train.gif)
